@@ -1,0 +1,55 @@
+._Switch {
+	position: relative;
+	display: inline-block;
+	width: 4em;
+	height: 2.5em;
+
+	input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: var(--col-background-dark);
+		border-radius: 2em;
+		border: 0.125em solid var(--col-base-gray);
+		transition:
+			background-color var(--transition-medium),
+			border-color var(--transition-fast),
+			box-shadow var(--transition-medium);
+
+		&:before {
+			position: absolute;
+			content: "";
+			height: 1.75em;
+			width: 1.75em;
+			left: 0.25em;
+			bottom: 0.25em;
+			background-color: var(--col-base-gray);
+			transition:
+				background-color var(--transition-medium),
+				transform var(--transition-medium) var(--ease-soft-bounce);
+			border-radius: 2em;
+		}
+	}
+	input:hover+.slider:before {
+		background-color: #fff;
+	}
+	input:focus+.slider {
+		border-color: #fff;
+	}
+	input:checked+.slider {
+		box-shadow: 0 0 0.25em #fffa;
+		background-color: var(--col-background-light);
+	}
+	input:checked+.slider:before {
+		transform: translateX(1.5em);
+	}
+}

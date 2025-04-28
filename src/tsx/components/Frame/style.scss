@@ -1,0 +1,109 @@
+@keyframes portrait-warning {
+	0% {
+		opacity: 1;
+		rotate: 0;
+	}
+	20% {
+		opacity: 1;
+		rotate: 90deg;
+	}
+	40% {
+		opacity: 1;
+		rotate: 90deg;
+	}
+	67% {
+		opacity: 0;
+		rotate: 90deg;
+	}
+	80% {
+		opacity: 0;
+		rotate: 0.01deg;
+	}
+	100% {
+		opacity: 1;
+		rotate: 0.01deg;
+	}
+}
+
+._Frame {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	color: var(--col-base-text);
+
+	.dev {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 0.5em;
+		color: white;
+		background-color: #0009;
+		z-index: 1000;
+	}
+	.background-container {
+		background-color: var(--col-background-dark);
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -10;
+		pointer-events: none;
+	}
+	.fixed-button-container {
+		display: flex;
+		position: fixed;
+		top: 1.5em;
+		right: 1.5em;
+		gap: 0.75em;
+	}
+	.canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -8;
+		mix-blend-mode: lighten;
+		transition: opacity var(--transition-slowest);
+	}
+	.portrait-warning-dialog {
+		width: calc(100% - 4em);
+		max-width: 32em;
+		text-align: center;
+
+		.warning-content {
+			padding: 2.5em 2em;
+
+			.warning-graphic-container {
+				margin: 2em auto;
+			}
+			.warning-graphic-parent {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 4em;
+				height: 6em;
+				margin: 0 auto;
+
+				.warning-graphic-ghost {
+					width: 100%;
+					height: 100%;
+					border-radius: 0.5em;
+					animation-name: portrait-warning;
+					animation-duration: 3s;
+					animation-iteration-count: infinite;
+					border: 0.25em solid var(--col-base-gray);
+					box-shadow:
+						inset 0 0 0.25em #fff8,
+						0 0 0.25em #fff8;
+				}
+			}
+			.warning-exit-button {
+				margin-top: auto;
+			}
+		}
+	}
+}

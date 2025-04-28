@@ -1,0 +1,47 @@
+/* Typefaces */
+@import url('../assets/fonts/agletmono/index.css');
+@import url('../assets/fonts/quiroh/index.css');
+@import url('../config/variables.scss');
+
+/* Document body rules */
+:root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+	margin: 0;
+    font-family: 'quiroh', sans-serif;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+p {
+    line-height: 1.365em;
+}
+
+button {
+    font-family: 'quiroh', sans-serif;
+    font-size: unset;
+}
+
+._Screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

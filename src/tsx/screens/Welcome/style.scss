@@ -1,0 +1,178 @@
+@property --pulsing-y {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: -1;
+}
+@property --transition-y {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@property --mouse-x {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@property --mouse-y {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@keyframes idle-pulse {
+	0% {
+		--pulsing-y: -1;
+	}
+	50% {
+		--pulsing-y: 1;
+	}
+	100% {
+		--pulsing-y: -1;
+	}
+}
+._Welcome {
+	display: flex;
+	z-index: 1;
+
+	.content-column,
+	.effect-column {
+		width: 100%;
+		flex: 1 0;
+	}
+	.content-column {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+		align-items: center;
+		opacity: 1;
+		transition: opacity 0.8s;
+
+		.wordmark-container {
+			width: 80%;
+			overflow: hidden;
+
+			.wordmark {
+				transition: transform 1.5s ease-out;
+				width: 100%;
+				height: auto;
+			}
+		}
+		.launch-button {
+			margin: 2em 0;
+		}
+		.what-is-this-link {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: var(--col-base-gray);
+		}
+		&.inactive {
+			transition: none;
+			opacity: 0;
+
+			.wordmark {
+				transform: translateY(100%);
+			}
+		}
+		&.leaving {
+			opacity: 0;
+		}
+	}
+	
+	.effect-column {
+		position: relative;
+		animation: idle-pulse;
+		animation-duration: 5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+		--mouse-x: 0;
+		--mouse-y: 0;
+
+		&.inactive {
+			--transition-y: 1;
+			opacity: 0;
+		}
+		&.leaving {
+			--transition-y: -1.5;
+		}
+		.effect-bubble {
+			--transition-y: inherit;
+			transition:
+				--transition-y 1.5s cubic-bezier(0.25, 0.025, 0.15, 1.005) calc(var(--y) * 0.2s),
+				background-color var(--transition-slowest);
+			position: absolute;
+			top: calc(-16.5% + var(--y) * 80%);
+			right: calc(var(--y) * 40%);
+			z-index: var(--z);
+			width: 75%;
+			border-radius: 100%;
+			transform:
+				translateX(calc((0.5 - var(--y)) * var(--mouse-x) * 16%)) // moves bubbles back and forth with mouse-x
+				rotate(calc(30deg))	// default rotation
+				translateY(calc(pow(var(--y), 3) * -9%))	// moves bubbles closer to each other near the bottom of the stack
+				translateY(calc(var(--transition-y) * 120vh + var(--transition-y) * var(--y) * 50%))	// applies when bubbles are moving into screen
+				scaleY(calc(0.6 + var(--mouse-y) * 0.2))	// base scaling, with mouse-y fx scale applied
+				scale(calc(1.1 - 0.45 * var(--y)))	// scale down bubble according to order in stack
+				translateY(calc(pow(var(--y) + 1, 2) * var(--pulsing-y) * -1.75%))	// pulse effect
+				translateX(calc((0.5 - var(--y)) * var(--mouse-y) * 20%));
+				
+			background-color: #0008;
+			backdrop-filter: blur(1.25em);
+			-webkit-backdrop-filter: blur(1.25em);
+			
+			&:hover {
+				background-color: color-mix(in srgb, var(--primary-color) 10%, #0008 100%);
+				--shadow-scale: 0.99;
+			}
+		}
+	}
+	.intro-dialog {
+		width: calc(100% - 2em);
+		height: calc(100% - 2em);
+		max-width: 60em;
+		max-height: 36em;
+
+		.intro-dialog-content {
+			padding: 1em;
+		}
+	}
+	.fixed-button-container {
+		display: flex;
+		position: fixed;
+		top: 1.5em;
+		right: 1.5em;
+		gap: 0.75em;
+
+		.settings-button {
+			transition: opacity var(--transition-slow);
+
+			&.leaving {
+				opacity: 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 1200px) and (max-aspect-ratio: 5/4)  {
+	._Welcome {
+		.effect-column {
+			width: 100%;
+			height: 100%;
+			max-width: 900px;
+			max-height: 800px;
+			margin: 8vw auto 0;
+		}
+		.content-column {
+			position: absolute;
+			height: 100%;
+			margin: auto;
+			z-index: 10;
+			
+			.wordmark-container {
+				filter: drop-shadow(0 0.125em 0.75em #000b);
+			}
+			.launch-button {
+				box-shadow: 0 0.125em 0.5em #000b;
+			}
+		}
+	}
+}

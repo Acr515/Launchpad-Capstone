@@ -1,0 +1,49 @@
+@keyframes circle-pulse {
+	0% {
+		box-shadow: none;
+		background-color: var(--col-base-dark-gray);
+	}
+	5% {
+		box-shadow: 0 0 0.25em #fff;;
+		background-color: #fff;
+	}
+	35% {
+		box-shadow: none;
+		background-color: var(--col-base-dark-gray);
+	}
+}
+._Loading {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	gap: 2em;
+	background-color: var(--col-background-dark);
+	transition: opacity var(--transition-slow);
+
+	.loading-label {
+		font-family: 'quiroh', sans-serif;
+		font-weight: 300;
+		font-size: 1.2em;
+		color: var(--col-base-gray);
+	}
+	.loading-graphics {
+		display: flex;
+		gap: 2em;
+
+		.loading-bubble {
+			animation-name: circle-pulse;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+			animation-delay: calc(var(--order) * 0.375s);
+			width: 0.5em;
+			height: 0.5em;
+			border-radius: 10em;
+			background-color: var(--col-base-dark-gray);
+			transition: background-color var(--transition-medium);
+		}
+	}
+	&.vanish {
+		opacity: 0;
+	}
+}

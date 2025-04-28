@@ -1,0 +1,95 @@
+@property --light-factor {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 1;
+}
+._TaskBubble {
+	width: 4em;
+	height: 4em;
+	border-radius: 100em;
+	flex-shrink: 0;
+	flex-grow: 0;
+	position: relative;
+	$border: 0.05em;
+	transition:
+		--light-factor var(--transition-medium),
+		box-shadow var(--transition-medium);
+	--light-factor: 1;
+
+	&:hover {
+		--light-factor: 0.8;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 0;
+		margin: -$border;
+		border-radius: inherit;
+		background: linear-gradient(
+			-200deg, 
+			color-mix(in srgb, var(--primary-color) 100%, #fffe 75%), 
+			color-mix(in srgb, var(--primary-color) 90%, #9990 100%), 
+			color-mix(in srgb, var(--secondary-color) 90%, #bbb0 100%), 
+			color-mix(in srgb, var(--secondary-color) 100%, #fffe 75%)
+		);
+	}
+
+	&.small {
+		width: 1.5em;
+		height: 1.5em;
+		--light-factor: 0.8;
+
+		&:hover {
+			--light-factor: 0.6;
+		}
+	}
+
+	.bubble-content-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		border-radius: 100em;
+		position: relative;
+		z-index: 0;
+
+		// Gradient background
+		background:
+			radial-gradient(
+				transparent 45%, 
+				color-mix(in srgb, var(--primary-color) 5%, transparent 100%) 55%,
+				color-mix(in srgb, var(--primary-color) 30%, transparent 100%) 67.5%,
+				var(--primary-color) 105%
+			),
+			linear-gradient(
+				-200deg,
+				var(--primary-color) -2%,
+				color-mix(in srgb, var(--primary-color) 100%, transparent calc(30% + 10% / var(--light-factor))) calc(12.5% - 2% * var(--light-factor)),
+				color-mix(in srgb, var(--primary-color) 19%, transparent 100%) calc(40% - 20.5% * var(--light-factor)),
+				color-mix(in srgb, var(--primary-color) 5%, transparent 100%) calc(40% - 15% * var(--light-factor)),
+				transparent 30%,
+				transparent 70%,
+				color-mix(in srgb, var(--secondary-color) 5%, transparent 100%) calc(60% + 15% * var(--light-factor)),
+				color-mix(in srgb, var(--secondary-color) 19%, transparent 100%) calc(60% + 20.5% * var(--light-factor)),
+				color-mix(in srgb, var(--secondary-color) 100%, transparent calc(30% + 10% / var(--light-factor))) calc(87.5% + 2% * var(--light-factor)),
+				var(--secondary-color) 102%,
+			),
+			color-mix(in srgb, var(--primary-color) calc(20% / var(--light-factor)), #000 100%);
+		background-clip: padding-box;
+	}
+
+	.task-number {
+		font-family: 'agletmono', monospace;
+		font-weight: 700;
+		color: var(--col-base-gray);
+		mix-blend-mode: luminosity;
+		font-size: 1.25em;
+		user-select: none;
+	}
+}

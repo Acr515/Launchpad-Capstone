@@ -1,0 +1,65 @@
+._StepWrapper {
+	width: 100%;
+	position: relative;
+	z-index: 0;
+	opacity: 0.4;
+	transition: opacity var(--transition-fast);
+
+	.step-number {
+		display: flex;
+		width: 1.85em;
+		height: 1.85em;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		$border: 0.15em;
+		border-radius: 0.5em;
+		background-color: #111;
+		background-clip: padding-box;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			opacity: 0.8;
+			z-index: -1;
+			margin: -$border;
+			border-radius: 0.6em;
+			background: linear-gradient(0deg, var(--primary-color), var(--secondary-color));
+		}
+		.step-number-character {
+			font-weight: 500;
+			font-size: 1.2em;
+		}
+	}
+	.step-subheading-container {
+		display: flex;
+		align-items: center;
+		gap: 0.75em;
+		margin: 0.85em 0 0 0.1em;
+	}
+	.step-subheading {
+		font-weight: 600;
+		font-size: 1.4em;
+	}
+
+	// Active state styles
+	&.active {
+		opacity: 1;
+
+		.step-number {
+			background-color: transparent;
+			text-shadow: 0 0 0.25em color-mix(in srgb, var(--neutral-color-inverted) 100%, transparent 100%);
+
+			&:before {
+				box-shadow: 0 0 0.3em var(--secondary-color);
+			}
+			.step-number-character {
+				color: var(--neutral-color);
+			}
+		}
+	}
+}

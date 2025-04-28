@@ -1,0 +1,74 @@
+._SubsectionIndicator {
+	display: inline-block;
+	position: relative;
+	width: 1em;
+	height: 1em;
+	border-radius: 5em;
+
+	$border: 0.125em;
+	background-clip: padding-box;
+	
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		opacity: 1;
+		z-index: -1;
+		margin: -$border;
+		border-radius: 5em;
+		background: linear-gradient(0deg, var(--primary-color), var(--secondary-color));
+		transition: opacity var(--transition-fastest);
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		opacity: 0;
+		border-radius: 5em;
+		margin: -$border;
+		background: radial-gradient(#fff7 10%, #fff0 100%);
+		transition: opacity var(--transition-fastest);
+	}
+
+	.inside-shadow {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1em;
+		height: 1em;
+		background:
+			radial-gradient(#0004, #0009)
+			color-mix(in srgb, var(--primary-color) 100%, #000a 100%);
+		border-radius: 5em;
+		transition: opacity var(--transition-fastest);
+	}
+
+	// Active state styles
+	&.active:before {
+		box-shadow: 0 0 0.5em 0.125em color-mix(in srgb, var(--secondary-color) 100%, transparent 100%);
+	}
+	&.active:after {
+		opacity: 1;
+	}
+	&.active .inside-shadow {
+		opacity: 0;
+	}
+
+	// Interactive styles
+	&.interactive:before {
+		opacity: 0.75;
+	}
+	&.interactive {
+		cursor: pointer;
+	}
+	&.interactive:hover:before {
+		opacity: 1;
+	}
+}

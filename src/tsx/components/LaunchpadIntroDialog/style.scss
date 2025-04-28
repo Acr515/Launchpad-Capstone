@@ -1,0 +1,50 @@
+._LaunchpadIntroDialog {
+	width: calc(100% - 2em);
+	max-width: 48em;
+	min-height: 32em;
+
+	.dialog-content {
+		display: flex;
+		flex-flow: column nowrap;
+		width: 100%;
+		padding: 2em;
+
+		.dialog-body {
+			display: flex;
+			height: 100%;
+			position: relative;
+
+			.dialog-slide {
+				display: flex;
+				position: absolute;
+				opacity: 0;
+				user-select: none;
+				pointer-events: none;
+				transform: translateY(calc(var(--current-delta) * -1em));
+				transition:
+					opacity var(--transition-fast),
+					transform var(--transition-fast);
+
+				&.active {
+					position: static;
+					opacity: 1;
+					user-select: unset;
+				}
+				.text-container {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					width: 100%;
+				}
+				.graphic-container {
+					width: 100%;
+				}
+			}
+		}
+		.footer-buttons {
+			display: flex;
+			justify-content: space-between;
+			flex-grow: 0;
+		}
+	}
+}

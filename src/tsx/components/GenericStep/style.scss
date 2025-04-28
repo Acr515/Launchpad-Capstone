@@ -1,0 +1,64 @@
+._GenericStep {
+	display: flex;
+	gap: 2em;
+	margin-top: 1.5em;
+	
+	p {
+		margin: 1.5em 0;
+
+		&:first-child {
+			margin: 0 0 1.5em;
+		}
+	}
+	.step-column {
+		width: 100%;
+		max-width: var(--dim-step-width);
+		margin-right: auto;
+		
+		&.image {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.step-image-container {
+			display: inline-block;
+			position: relative;
+			margin-bottom: auto;
+			line-height: 0;
+
+			.step-image {
+				width: auto;
+				max-width: 100%;
+				height: auto;
+				max-height: 50vh;
+				object-fit: contain;
+				border-radius: 0.25em;
+			}
+			.image-highlight {
+				position: absolute;
+				top: calc(var(--y1) * 100%);
+				left: calc(var(--x1) * 100%);
+				bottom: calc(calc(1 - var(--y2)) * 100%);
+				right: calc(calc(1 - var(--x2)) * 100%);
+				border: 0.125em solid var(--primary-color);
+				background-color: color-mix(in srgb, var(--primary-color) 30%, transparent 100%);
+				border-radius: 0.25em;
+				box-shadow: 0 0 0.5em color-mix(in srgb, var(--secondary-color) 60%, transparent 100%);
+				opacity: 0.85;
+				transition:
+					opacity var(--transition-fast),
+					box-shadow var(--transition-medium);
+				
+				&:hover {
+					opacity: 1;
+					box-shadow: 0 0 0.5em color-mix(in srgb, var(--secondary-color) 100%, transparent 80%);
+				}
+			}
+		}
+
+		// If column is for images but no image is specified
+		&.empty {
+			display: none;
+		}
+	}
+}

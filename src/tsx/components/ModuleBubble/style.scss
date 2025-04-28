@@ -1,0 +1,66 @@
+@property --light {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@property --angle {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: -200;
+}
+@property --shadow-scale {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0.95;
+}
+._ModuleBubble {
+	position: relative;
+	aspect-ratio: 1;
+	border-radius: 100em;
+	--light: 0;
+	--angle: -200;
+
+	.bubble-background {
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		transition:
+			background-color var(--transition-slowest);
+		background:
+			// Edge gradient
+			radial-gradient(
+				transparent calc(45% - var(--light) * 3%), 
+				color-mix(in srgb, var(--primary-color) calc(5% + var(--light) * 4%), transparent 100%) 55%,
+				color-mix(in srgb, var(--primary-color) calc(30% + var(--light) * 8.5%), transparent 100%) 67.5%,
+				var(--primary-color) calc(105% - var(--light) * 10%)
+			),
+			// Directional gradient into secondary color
+			linear-gradient(
+				calc(var(--angle) * 1deg),
+				var(--primary-color) -2%,
+				color-mix(in srgb, var(--primary-color) 100%, transparent 40%) 10.5%,
+				color-mix(in srgb, var(--primary-color) 19%, transparent 100%) 20.5%,
+				color-mix(in srgb, var(--primary-color) 5%, transparent 100%) 25%,
+				transparent 30%,
+				transparent 70%,
+				color-mix(in srgb, var(--secondary-color) 5%, transparent 100%) 75%,
+				color-mix(in srgb, var(--secondary-color) 19%, transparent 100%) 79.5%,
+				color-mix(in srgb, var(--secondary-color) 100%, transparent 40%) 89.5%,
+				var(--secondary-color) 102%,
+			);
+	}
+	.bubble-shadow {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		opacity: 1;
+		transition: scale var(--transition-slow);
+		scale: calc(var(--shadow-scale) + 0.195);
+		background-size: contain;	// Rendering shadow as image avoids box-shadow performance pitfalls
+		background-repeat: no-repeat;
+	}
+}

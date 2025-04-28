@@ -1,0 +1,170 @@
+._TaskStepInterface {
+	display: flex;
+	
+	.sidebar {
+		display: flex;
+		padding: 1em;
+		gap: 0.25em;
+		box-sizing: border-box;
+		background-color: #0009;
+
+		&.initialized {
+			transition: background-color 0.5s;
+		}
+		&.initialized.out {
+			transition:
+				background-color 0.25s,
+				transform 0.5s var(--ease-soft-bounce);
+		}
+		.back-button-column {
+			padding: 1em 0 0;
+			width: 2.5em;
+
+			.back-button {
+				border: none;
+				background: none;
+				width: 100%;
+				padding: 0;
+				cursor: pointer;
+
+				&.initialized {
+					transition: transform var(--transition-medium) ease-out;
+				}
+				.back-button-image {
+					width: 100%;
+					--color: #bbb;
+					transition: background-color var(--transition-fast);
+				}
+				&:hover .back-button-image {
+					--color: #fff;
+				}
+			}
+		}
+		.progress-column {
+			display: flex;
+			flex-flow: column nowrap;
+			gap: 1em;
+
+			.progress-task-bubble-container {
+				margin: 0 1em;
+
+				&.initialized {
+					transition: transform var(--transition-slow) var(--ease-quick);
+				}
+			}
+			.progress-bar.initialized {
+				transition: transform 0.75s var(--ease-soft-bounce) 0.125s;
+			}
+		}
+		.bookmark-button {
+			display: block;
+			position: relative;
+			width: 4.5em;
+			height: 4.5em;
+			margin: 0 auto;
+			background: none;
+			border: none;
+			cursor: pointer;
+
+			.bookmark-button-icon,
+			.bookmark-button-fill {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				--color: var(--col-base-gray);
+				transition: background-color var(--transition-fastest);
+			}
+			.bookmark-button-fill {
+				opacity: 0;
+				transition:
+					opacity var(--transition-fastest),
+					background-color var(--transition-fastest);
+				
+				&.visible {
+					opacity: 1;
+				}
+			}
+			.bookmark-button-tooltip {
+				position: absolute;
+				z-index: 5;
+				top: 50%;
+				left: 150%;
+				pointer-events: none;
+				user-select: none;
+				opacity: 0;
+				transform: translate(-0.5em, -50%);
+				transition:
+					opacity var(--transition-fast),
+					transform var(--transition-fast) ease-out;
+				
+				.bookmark-button-tooltip-text {
+					font-size: 1em;
+					font-weight: 600;
+					color: var(--col-base-text);
+					white-space: nowrap;
+				}
+			}
+			&:hover .bookmark-button-icon,
+			&:hover .bookmark-button-fill {
+				--color: #fff;
+			}
+			&:hover .bookmark-button-tooltip {
+				transform: translate(0, -50%);
+				opacity: 1;
+			}
+			&:active .bookmark-button-icon,
+			&:active .bookmark-button-fill {
+				--color: var(--col-base-dark-gray);
+			}
+			&.initialized.forward.in {
+				transition: transform 0.75s var(--ease-soft-bounce) 0.325s;
+			}
+		}
+	}
+	.content-area {
+		display: flex;
+		flex-flow: column nowrap;
+		flex-grow: 1;
+
+		.heading {
+			padding: 2em 2em 0.5em;
+
+			.task-title {
+				display: inline-block;
+				font-size: 1.625em;
+				font-weight: 500;
+
+				&.initialized.in {
+					transition: transform var(--transition-slow) var(--ease-quick);
+				}
+				&.initialized.out {
+					transition: transform var(--transition-slow) var(--ease-quick);
+				}
+			}
+		}
+		.step-container {
+			display: flex;
+			position: relative;
+			height: 100%;
+			overflow-y: scroll;
+			flex-flow: column nowrap;
+			gap: 15em;
+			padding: 1.5em 3em 8em;
+			scrollbar-color: var(--col-scrollbar);
+			mask: var(--scrollbar-mask);
+
+			&.initialized.in {
+				transition:
+					transform 0.75s var(--ease-soft-bounce) 0.125s,
+					opacity 0.75s linear 0.125s;
+			}
+			&.initialized.out {
+				transition:
+					transform 0.75s var(--ease-soft-bounce),
+					opacity 0.5s;
+			}
+		}
+	}
+}

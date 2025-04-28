@@ -1,0 +1,20 @@
+._SecondaryTooltip {
+	position: absolute;
+	bottom: -0.5em;
+	left: 0.5em;
+	font-weight: 300;
+	font-size: 0.8em;
+	color: var(--col-base-text);
+	--visible: 0;
+	opacity: var(--visible);
+	pointer-events: none;
+	user-select: none;
+	transform: translateY(calc(-25% * (1 - var(--visible))));
+	transition:
+		opacity var(--transition-fast),
+		transform var(--transition-fast);
+
+	.jump-index {
+		font-weight: 600;
+	}
+}

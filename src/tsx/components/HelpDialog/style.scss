@@ -1,0 +1,123 @@
+._HelpDialog {
+	width: calc(100% - 2em);
+	height: calc(100% - 2em);
+	max-width: 48em;
+	max-height: 38em;
+
+	.dialog-content {
+		display: flex;
+		flex-flow: column nowrap;
+		width: 100%;
+		padding: 2em;
+
+		.third-split {
+			display: flex;
+			width: 100%;
+
+			.large-area {
+				width: 100%;
+				flex-grow: 1;
+			}
+			.small-area {
+				width: 50%;
+				flex-grow: 1;
+			}
+		}
+		h2 {
+			font-size: 1.2em;
+		}
+		h3 {
+			font-size: 0.85em;
+		}
+		.divider {
+			margin: 1.5em 0 2em;
+			border-top: 0.075em solid var(--col-base-dark-gray);
+		}
+		.action-button {
+			display: flex;
+			margin-left: auto;
+			z-index: 1;
+		}
+		.slide-container {
+			display: flex;
+			position: relative;
+			width: 100%;
+			padding-bottom: 2.5em;
+
+			.dialog-slide {
+				display: flex;
+				flex-flow: column nowrap;
+				width: 100%;
+				position: absolute;
+				opacity: 0;
+				user-select: none;
+				pointer-events: none;
+				transform: translateX(calc(var(--current-delta) * -1em));
+				transition:
+					opacity var(--transition-fast),
+					transform var(--transition-fast);
+
+				&.active {
+					position: static;
+					opacity: 1;
+					user-select: unset;
+					pointer-events: unset;
+				}
+				.resource-description {
+					display: flex;
+					flex-direction: column;
+					gap: 1.125em;
+
+					div {
+						width: 100%;
+					}
+					.resource-screenshot {
+						width: 90%;
+						height: auto;
+						border-radius: 0.25em;
+						overflow: hidden;
+					}
+				}
+			}
+		}
+		.resource-buttons {
+			display: flex;
+			position: relative;
+			margin: 0.5em 0 1.75em;
+			$gap: 2em;
+			$size: 4em;
+			gap: $gap;
+
+			.resource-button {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: none;
+				background: none;
+				width: $size;
+				height: $size;
+				border-radius: $size;
+				cursor: pointer;
+				border: 1px solid transparent;
+				transition: border-color var(--transition-medium);
+
+				&:hover {
+					border-color: var(--col-base-gray);
+				}
+				.resource-icon {
+					width: calc($size - 1.5em);
+					height: calc($size - 1.5em);
+				}
+			}
+			.active-indicator {
+				position: absolute;
+				top: 50%;
+				transform: translate(calc(($size + $gap) * var(--current)), -50%);
+				width: 4em;
+				height: 4em;
+				pointer-events: none;
+				transition: transform var(--transition-fast) var(--ease-quick);
+			}
+		}
+	}
+}

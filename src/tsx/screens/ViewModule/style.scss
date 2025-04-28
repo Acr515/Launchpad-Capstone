@@ -1,0 +1,98 @@
+._ViewModule {
+	display: flex;
+	flex-flow: column nowrap;
+
+	.heading {
+		display: flex;
+		padding: 2em 2.5em 1em;
+		width: 100%;
+		z-index: 1;
+		box-sizing: border-box;
+
+		&.initialized {
+			transition: opacity var(--transition-medium);
+		}
+		&.initialized.backward.in {
+			transition: opacity var(--transition-slow);
+		}
+		.back-button {
+			position: absolute;
+			width: 2.5em;
+			cursor: pointer;
+
+			&.initialized.forward.out {
+				opacity: 0;
+			}
+			&.initialized.backward.in {
+				transition: opacity var(--transition-medium);
+			}
+			.back-button-image {
+				width: 100%;
+				--color: var(--col-base-gray);
+				transition: background-color var(--transition-fast);
+			}
+			&:hover .back-button-image {
+				--color: #fff;
+			}
+		}
+	}
+	.module-title {
+		display: inline-block;
+		margin: 0 auto;
+		font-weight: 500;
+		font-size: 1.85em;
+
+		&.initialized.forward.in {
+			transition: transform 0.75s ease-in-out;
+		}
+		&.initialized.lateral.out {
+			transition: transform var(--transition-slow) var(--ease-quick);
+		}
+		&.initialized.lateral.in {
+			transition: transform var(--transition-slow) var(--ease-quick) var(--transition-fast);
+		}
+	}
+	.task-list {
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 2.25em;
+		flex-grow: 1;
+		padding: 1em 2.5em 4em;
+		overflow-y: auto;
+		scrollbar-color: var(--col-scrollbar);
+  		box-sizing: border-box;
+		max-width: 75em;
+ 		margin: 0 auto;
+
+		&.initialized.forward.in {
+			transition: transform 1s ease-out 0.25s;
+		}
+		&.initialized.backward.out {
+			transition:
+				transform 1s var(--ease-quick),
+				opacity 0.5s linear 0.125s;
+		}
+		&.initialized.forward.out {
+			transition:
+				transform 0.75s var(--ease-quick),
+				opacity 0.5s;
+		}
+		&.initialized.backward.in {
+			transition:
+				transform 0.5s var(--ease-quick) 0.125s,
+				opacity 0.5s linear 0.125s;
+		}
+		&.initialized.lateral.in {
+			transform-origin: center right;
+			transition:
+				transform 0.5s var(--ease-quick),
+				opacity 0.5s linear;
+		}
+		&.initialized.lateral.out {
+			transform-origin: center left;
+			transition:
+				transform 0.5s var(--ease-quick),
+				opacity 0.25s linear;
+		}
+	}
+}

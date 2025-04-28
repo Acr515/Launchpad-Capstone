@@ -1,0 +1,109 @@
+._TaskProgressBar {
+	display: flex;
+	position: relative;
+	height: 100%;
+	
+	.indicator-column {
+		position: absolute;
+		left: 0.75em;
+		top: 0;
+		bottom: 0;
+	}
+	.progress-bar {
+		position: relative;
+		width: 0.5em;
+		border: 0.125em solid #aaa;
+		border-radius: 10em;
+		margin: 0 auto;
+		box-sizing: border-box;
+
+		.progress-fill-beginning {
+			height: 0.325em;
+			margin: -0.125em;
+			background-color: var(--primary-color);
+			border-radius: 1em 1em 0 0;
+		}
+		.progress-fill {
+			height: calc(100% - 0.2em);
+			margin: -0.125em;
+			background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+			transform: scaleY(var(--y));
+			transform-origin: top center;
+		}
+		.current-marker-container,
+		.ghost-marker-container {
+			position: absolute;
+			top: 0.125em;
+			bottom: 0;
+
+			.current-marker,
+			.ghost-marker {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 1.85em;
+				height: 1.85em;
+				padding: 0.15em;
+				border-radius: 0.5em;
+				margin: -0.125em;
+
+				.marker-number {
+					font-weight: 600;
+					font-size: 1.125em;
+					transition: opacity var(--transition-fastest);
+				}
+			}
+		}
+		.progress-hitbox {
+			position: absolute;
+			top: 0.75em;
+			bottom: 0.75em;
+			left: -1em;
+			right: -1.5em;
+			z-index: 1;
+			cursor: pointer;
+
+			&:hover:not(.hide-ghost)~.ghost-marker-container {
+				opacity: 1;
+			}
+			&:active~.ghost-marker-container .ghost-marker {
+				background: color-mix(in srgb, var(--primary-color) 50%, transparent 50%);
+			}
+			&.show-active-number~.current-marker-container .marker-number {
+				opacity: 1;
+			}
+		}
+		.current-marker-container {
+			// TODO: This is... not covering the bar
+			transform: translateY(calc(var(--y) * 101%));	// 101% allows marker to cover far end of bar
+			
+			.current-marker {
+				background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+				  transform: translate(calc(-50% + 0.25em), calc(var(--y) * -100%));
+				box-shadow: inset 0 0 0 0.125em color-mix(in srgb, var(--neutral-color) 100%, transparent 100%);
+				text-shadow: 0 0 0.125em var(--neutral-color-inverted);
+				color: var(--neutral-color);
+
+				.marker-number {
+					opacity: 0;
+				}
+			}
+		}
+		.ghost-marker-container {
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(calc(var(--hover-y) * 101%));	// 101% allows marker to cover far end of bar
+			transition: opacity var(--transition-fastest);
+
+			.ghost-marker {
+				background: #0008;
+				transform: translate(calc(-50% + 0.25em), -50%);
+				box-shadow: inset 0 0 0 0.125em #fff7;
+				pointer-events: none;
+				backdrop-filter: blur(0.25em);
+				transition: background-color var(--transition-fastest);
+				text-shadow: 0 0 0.125em #0008;
+			}
+		}
+	}
+}

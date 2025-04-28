@@ -1,0 +1,40 @@
+._Modules {
+	.screen-container {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		--x: 0;
+	}
+	.screen-container.initialized {
+		transition: transform 1s ease-out 0.25s, opacity 1s linear 0.25s;
+	}
+	.screen-container.initialized.out {
+		transition: transform 0.65s ease-in, opacity 0.65s;
+	}
+	.module-container {
+		display: flex;
+		-webkit-overflow-scrolling: touch;
+		height: 100%;
+		overflow-x: scroll;
+		padding: 0 calc(50% - (var(--dim-menu-circle) / 2));
+		scrollbar-color: var(--col-scrollbar);
+		
+		.module-item {
+			translate: calc(var(--x) * 120vw) calc(pow(var(--x), 2.5) * -30%);
+		}
+		.module-item.initialized.forward {
+			transition: translate calc(1.25s + var(--order) * 0.35s) cubic-bezier(0, 0.55, 0.45, 1);;
+		}
+	}
+
+	// Unfortunately lenis/react inserts a div wrapper that can't be modified through the library, this being the only way to query it
+	.module-container>div {
+		display: inline-flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		gap: var(--dim-menu-circle-gap);
+		align-self: center;
+	}
+}

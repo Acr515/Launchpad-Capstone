@@ -1,0 +1,62 @@
+@keyframes tracker-idle {
+	0% {
+		transform: rotateX(10deg) rotateZ(5deg) rotateY(17.5deg);
+	}
+	50% {
+		transform: rotateX(10deg) rotateZ(12deg) rotateY(5deg);
+	}
+	100% {
+		transform: rotateX(10deg) rotateZ(5deg) rotateY(17.5deg);
+	}
+}
+
+._ProgressTrackerDialog {
+	width: calc(100% - 2em);
+	height: calc(100% - 2em);
+	max-width: 40em;
+	max-height: 32em;
+
+	.dialog-content {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding: 2em;
+		padding-top: 0;
+		gap: 2em;
+
+		.content-section {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 2em;
+
+			.download-button {
+				align-self: flex-start;
+			}
+			p {
+				margin: 0;
+			}
+		}
+		.tracker-graphic {
+			margin: 0 auto;
+			width: 80%;
+			height: auto;
+			aspect-ratio: 0.775;
+			perspective: 2em;
+			animation-name: tracker-idle;
+			animation-duration: 5.25s;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			box-shadow: 0 0 0.75em #fff3;
+			transition: scale var(--transition-slow) var(--ease-quick);
+			scale: 1;
+
+			&:hover {
+				scale: 1.075;
+			}
+		}
+	}
+}

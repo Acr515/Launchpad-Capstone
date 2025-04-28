@@ -1,0 +1,40 @@
+._Background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: opacity 1s;
+
+	// Inactive state
+	&.hidden {
+		opacity: 0;
+	}
+
+	// Welcome background
+	&.welcome {
+		background: linear-gradient(
+			to right,
+			#050505 0%,
+			#0a0a0a 30%,
+			#080808 60%,
+			#010101 100%
+		);
+	}
+
+	// Neutral background (Modules)
+	&.neutral {
+		background: linear-gradient(to right, var(--col-background-dark), var(--col-background-light), var(--col-background-dark));
+	}
+
+	// Module-specific background (View Module)
+	&.module {
+		background: linear-gradient(
+			-200deg,
+			color-mix(in srgb, var(--primary-color) 18.5%, var(--col-background-dark) 100%) 0%,
+			color-mix(in srgb, var(--primary-color) 7.5%, var(--col-background-dark) 100%) 25%,
+			color-mix(in srgb, var(--secondary-color) 7.5%, var(--col-background-dark) 100%) 75%,
+			color-mix(in srgb, var(--secondary-color) 18.5%, var(--col-background-dark) 100%) 100%
+		);
+	}
+}

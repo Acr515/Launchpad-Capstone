@@ -1,0 +1,39 @@
+._ProgressBarMarker {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 0.5em;
+	position: absolute;
+	right: 0;
+	top: calc(var(--y) * 100% + 0.25em);
+	z-index: 5;
+	transform: translateY(calc(var(--y) * -200%));
+	line-height: 0;
+
+	.marker-tooltip {
+		position: absolute;
+		transform: translate(-0.25em, -50%);
+		top: 50%;
+		left: calc(100% + 5em);
+		opacity: 0;
+		pointer-events: none;
+		line-height: 1.25em;
+		transition:
+			opacity var(--transition-fastest) linear,
+			transform var(--transition-fastest) ease-out;
+
+		.jump-to-label {
+			font-weight: 300;
+			font-size: 0.8em;
+			white-space: nowrap;
+		}
+		.jump-to-section-name {
+			font-weight: 600;
+			font-size: 1em;
+			white-space: nowrap;
+		}
+	}
+	&.interactive:hover .marker-tooltip {
+		transform: translate(0, -50%);
+		opacity: 1;
+	}
+}

@@ -1,0 +1,35 @@
+/* Inject variables into all SCSS files */
+:root {
+    /* Base theme colors */
+    --col-background-dark: #080808;
+    --col-background-light: #1a1a1a;
+    --col-base-dark: #111;
+    --col-base-text: #eee;
+    --col-base-light-gray: #ddd;
+    --col-base-gray: #bbb;
+    --col-base-dark-gray: #777;
+
+    --col-scrollbar: var(--col-background-light) var(--col-background-dark);
+
+    /* Size constants */
+    --dim-menu-circle: max(24em, min(36vw, 42em));
+    --dim-menu-circle-gap: 1em;
+    --dim-menu-circle-gap-inclusive: calc(var(--dim-menu-circle) + var(--dim-menu-circle-gap));
+    --dim-step-width: 34em;
+
+    /* Animation constants */
+    --transition-fastest: 0.125s;
+    --transition-fast: 0.175s;
+    --transition-medium: 0.25s;
+    --transition-slow: 0.5s;
+    --transition-slowest: 0.75s;
+    --ease-stiff-bounce: cubic-bezier(0.005, 1.650, 0.570, 1.000);
+    --ease-soft-bounce: cubic-bezier(0.397, 0.021, 0, 1.21);
+    --ease-quick: cubic-bezier(0.255, 0.005, 0, 1.028);
+
+    /* Universal properties */
+    --scrollbar-mask:
+        linear-gradient(to left, #fff 0 1.5em, transparent 1.5em) add,
+        linear-gradient(#fff 0 0) subtract,
+        linear-gradient(0deg, #fff, transparent 3% 97%, #fff);
+}

@@ -1,0 +1,32 @@
+._SettingsDialog {
+	max-width: min(32em, 100%);
+
+	.content {
+		display: flex;
+		flex-flow: column nowrap;
+		padding: 3em 2em;
+
+		.setting-row {
+			display: flex;
+			gap: 1em;
+			width: 100%;
+
+			.setting-label-container {
+				display: flex;
+				flex-flow: column nowrap;
+				gap: 0.5em;
+
+				.setting-name {
+					font-size: 1.2em;
+					font-weight: 600;
+				}
+				p {
+					margin: 0;
+				}
+			}
+			.setting-switch {
+				flex-shrink: 0;
+			}
+		}
+	}
+}

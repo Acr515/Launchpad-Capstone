@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'agletmono';
+    src: url('AgletMonoVF.otf');
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'agletmono';
+    src: url('AgletMonoVF_Italic.otf');
+    font-style: italic;
+    font-display: swap;
+}

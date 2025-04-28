@@ -1,0 +1,230 @@
+{
+	"metadata": {
+		"title": "Launchpad",
+		"demo": false,
+		"files": "./files"
+	},
+	"screens": [
+		{
+			"id": "5b8f1ae9",
+			"title": "Welcome",
+			"url": "/",
+			"screenTypes": ["start"]
+		},
+		{
+			"id": "4cc29a5b",
+			"title": "Modules",
+			"url": "modules",
+			"screenTypes": ["single"]
+		},
+		{
+			"id": "fee3c5f3",
+			"title": "View Module",
+			"url": "view-module",
+			"screenTypes": ["page"]
+		},
+		{
+			"id": "c4b531af",
+			"title": "Task",
+			"url": "task-steps",
+			"screenTypes": ["page"]
+		}
+	],
+	"materials": [
+		{
+			"id": "185d7bd3",
+			"name": "Laptop",
+			"imageName": "laptop",
+			"description": "Most modern Windows laptops work well— for best results, use the same one for the rest of the tasks."
+		},
+		{
+			"id": "ccc24da0",
+			"name": "Driver Station Laptop",
+			"imageName": "laptop",
+			"description": "This is the laptop that you set up during the Install Laptop Software module."
+		},
+		{
+			"id": "4ce19554",
+			"name": "roboRIO",
+			"imageName": "roborio",
+			"description": "A small gray device that serves as the brain of every FRC robot."
+		},
+		{
+			"id": "bb8e7676",
+			"name": "Robot",
+			"imageName": "robot",
+			"description": "Your robot, which should have all its hardware components installed, including a roboRIO."
+		},
+		{
+			"id": "103e315a",
+			"name": "Motor Controllers",
+			"imageName": "motor-controller",
+			"description": "Motor controllers vary in shape and size. They allow your robot's code to interface with its motors."
+		},
+		{
+			"id": "aaeca6fb",
+			"name": "Radio",
+			"imageName": "radio",
+			"description": "A small white device that allows your robot to wirelessly communicate with your laptop."
+		}
+	],
+	"modules": [
+		{
+			"title": "Install Laptop Software",
+			"id": "ab6db356",
+			"primaryColor": "#a238ff",
+			"secondaryColor": "#ef42fe",
+			"neutralColor": "white",
+			"tasks": [
+				{
+					"title": "Install FRC Game Tools",
+					"id": "13e683c4",
+					"description": "During this task, you'll install the FRC Game Tools to your laptop, which is a set of computer tools that will help you interact with the technology on your robot. Be sure to complete these steps on the same laptop that you'd like to use for programming and controlling your robot.",
+					"prerequisites": [],
+					"neededMaterials": ["185d7bd3"]
+				},
+				{
+					"title": "Install Programming Tools",
+					"id": "4551816f",
+					"description": "During this task, you'll install the tools necessary to write FRC robot code in the Java programming language. Don't worry; you won't be writing any code yet!",
+					"prerequisites": ["13e683c4"],
+					"neededMaterials": ["185d7bd3"]
+				}
+			]
+		},
+		{
+			"title": "Install Robot Software",
+			"id": "99469903",
+			"primaryColor": "#fd4671",
+			"secondaryColor": "#ff6d48",
+			"neutralColor": "white",
+			"tasks": [
+				{
+					"title": "Image your roboRIO",
+					"id": "41b9f0e0",
+					"description": "During this task, you'll set up your roboRIO, which is the computer onboard your robot that runs the code you'll write. Each year, FIRST releases a new update for roboRIOs— your roboRIO must be updated in order to compete.",
+					"prerequisites": ["13e683c4"],
+					"neededMaterials": ["ccc24da0", "4ce19554"]
+				},
+				{
+					"title": "Set Up your Radio",
+					"id": "3e02818a",
+					"description": "Your radio lets you wirelessly communicate with your robot from your laptop. During this task, you'll get it set up with the new season's software.",
+					"prerequisites": ["13e683c4"],
+					"neededMaterials": ["ccc24da0", "aaeca6fb"]
+				},
+				{
+					"title": "Set Up your Motor Controllers",
+					"id": "29e90ab2",
+					"description": "You'll check whether you have any specialized motor controllers on your robot, and how to set them up if you do.",
+					"prerequisites": [],
+					"neededMaterials": ["ccc24da0", "103e315a"]
+				}
+			]
+		},
+		{
+			"title": "Set Up Robot Code",
+			"id": "4ac75bb9",
+			"primaryColor": "#ffd23e",
+			"secondaryColor": "#e2ff37",
+			"neutralColor": "black",
+			"tasks": [
+				{
+					"title": "Create your VS Code Project",
+					"id": "c430b9a1",
+					"description": "During this task, you'll create a project in VS Code, which will create files on your laptop that allow you to start programming your robot.",
+					"prerequisites": ["4551816f"],
+					"neededMaterials": ["ccc24da0"]
+				},
+				{
+					"title": "Write your First Line of Code",
+					"id": "ada75f80",
+					"description": "Ready to write some code? You'll learn the basics of your robot's template program and how to write a line of code for your robot!",
+					"prerequisites": ["c430b9a1"],
+					"neededMaterials": ["ccc24da0"]
+				},
+				{
+					"title": "Add your Hardware",
+					"id": "5f72551d",
+					"description": "Your remote controllers and motor controllers need to be added into your code before you can your robot to move. You'll be adding those in this task.",
+					"prerequisites": ["29e90ab2", "ada75f80"],
+					"neededMaterials": ["ccc24da0", "103e315a"]
+				}
+			]
+		},
+		{
+			"title": "Drive Your Robot",
+			"id": "a9aaea07",
+			"primaryColor": "#9aff42",
+			"secondaryColor": "#63ff9f",
+			"neutralColor": "black",
+			"tasks": [
+				{
+					"title": "Run your Code",
+					"id": "be31e9eb",
+					"description": "Now that you've written some code, it's time to test it out! You'll learn how to connect to your robot to deploy code to it, as well as how to test it.",
+					"prerequisites": ["5f72551d"],
+					"neededMaterials": ["ccc24da0", "bb8e7676"]
+				},
+				{
+					"title": "Make your Robot Drive",
+					"id": "6424a721",
+					"description": "During this task, you'll write a little more code that will give you the ability to drive your robot using a controller.",
+					"prerequisites": ["be31e9eb"],
+					"neededMaterials": ["ccc24da0", "bb8e7676"]
+				},
+				{
+					"title": "Add an Accessory",
+					"id": "738dcf9f",
+					"description": "If you have any other motors on your robot, such as a motor that controls an arm or some other mechanism, you'll add a way to control them to your code during this task.",
+					"prerequisites": ["be31e9eb"],
+					"neededMaterials": ["ccc24da0"]
+				}
+			]
+		},
+		{
+			"title": "Go Autonomous",
+			"id": "d9967187",
+			"primaryColor": "#44d9ff",
+			"secondaryColor": "#568cff",
+			"neutralColor": "white",
+			"tasks": [
+				{
+					"title": "Customize your Dashboard",
+					"id": "36d05125",
+					"description": "Your driver dashboard lets you interface with your robot before and during a match. During this task, you'll set it up in your code.",
+					"prerequisites": ["5f72551d"],
+					"neededMaterials": ["ccc24da0", "bb8e7676"],
+					"underConstruction": true
+				},
+				{
+					"title": "Move in Autonomous Mode",
+					"id": "cb87b517",
+					"description": "Having an autonomous routine will help you score easy points during matches. During this task, you'll write your first autonomous routine with just a few lines of code!",
+					"prerequisites": ["be31e9eb", "36d05125"],
+					"neededMaterials": ["ccc24da0", "bb8e7676"]
+				}
+			]
+		}
+	],
+	"help": [
+		{
+			"icon": "cd",
+			"heading": "Chief Delphi",
+			"text": "CD is one of FRC's oldest and most active forums. Simply make an account and create a post describing the issue you're facing. During build season, you'll likely get a response from someone in the community within the hour.",
+			"link": "https://chiefdelphi.com"
+		},
+		{
+			"icon": "discord",
+			"heading": "FRC Discord",
+			"text": "The unofficial FRC Discord group has over 20,000 participants who can help you troubleshoot any issues you're having with your robot.",
+			"link": "https://discord.gg/frc"
+		},
+		{
+			"icon": "compass",
+			"heading": "Compass Alliance",
+			"text": "The Compass Alliance is a network of teams who've built a cache of resources that your team may find helpful. Their website houses all the information they've collected.",
+			"link": "https://www.thecompassalliance.org/"
+		}
+	]
+}

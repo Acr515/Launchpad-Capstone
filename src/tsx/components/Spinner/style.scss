@@ -1,0 +1,22 @@
+@keyframes loading-spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(180deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+._Spinner {
+	width: 2em;
+	height: 2em;
+	border: 0.125em solid var(--col-base-gray);
+	border-radius: 100em;
+	border-bottom-color: transparent;
+	animation-name: loading-spinner;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}

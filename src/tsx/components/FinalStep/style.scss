@@ -1,0 +1,66 @@
+._FinalStep {
+	$padding: 1.5em;
+	padding: $padding;
+	margin: -$padding;
+	background-color: #0008;
+	border-radius: 1em;
+	max-width: calc(var(--dim-step-width) + $padding);
+
+	.completion-heading {
+		display: flex;
+
+		.heading-text {
+			font-weight: 600;
+  			font-size: 1.4em;
+		}
+	}
+	.next-task-container {
+		display: flex;
+		gap: 1.25em;
+		align-items: center;
+		
+		.bubble-column,
+		.button-column {
+			flex: 0 0;
+		}
+		.text-column {
+			flex: 1 1;
+
+			.up-next-label {
+				font-size: 0.75em;
+				font-weight: 300;
+			}
+			.next-task-name {
+				font-size: 1.25em;
+				font-weight: 500;
+			}
+		}
+		.button-column {
+			position: relative;
+		}
+		.task-unavailable-tooltip {
+			position: absolute;
+			z-index: 5;
+			top: 50%;
+			right: 100%;
+			pointer-events: none;
+			user-select: none;
+			opacity: 0;
+			transform: translate(-1em, -50%);
+			transition:
+				opacity var(--transition-fast),
+				transform var(--transition-fast) ease-out;
+			
+			.tooltip-text {
+				display: block;
+				width: 12em;
+				font-size: 0.8em;
+				margin: 0;
+			}
+		}
+		.go-button:hover~.task-unavailable-tooltip {
+			opacity: 1;
+			transform: translate(-0.5em, -50%);
+		}
+	}
+}
